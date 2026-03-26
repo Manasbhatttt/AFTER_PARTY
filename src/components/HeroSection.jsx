@@ -100,9 +100,9 @@ export default function HeroSection() {
           <a href="#pre-register" className="px-8 py-4 bg-neon-pink text-white rounded-full font-bold text-lg hover:bg-white hover:text-dark-900 transition-all shadow-[0_0_20px_rgba(255,0,127,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] hover:-translate-y-1 inline-block text-center">
             Join the Vibe
           </a>
-          <button className="px-8 py-4 glass border border-white/20 rounded-full font-bold text-lg hover:border-neon-blue hover:text-neon-blue transition-all hover:-translate-y-1">
+          {/* <button className="px-8 py-4 glass border border-white/20 rounded-full font-bold text-lg hover:border-neon-blue hover:text-neon-blue transition-all hover:-translate-y-1">
             Watch Teaser
-          </button>
+          </button> */}
         </motion.div>
       </div>
 

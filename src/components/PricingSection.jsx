@@ -48,13 +48,14 @@ export default function PricingSection() {
               </div>
               <div className="mt-auto relative z-10">
                 <div className="text-6xl md:text-7xl font-noir font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">₹XXX</div>
-                <motion.button 
+                <motion.a 
+                  href="#pre-register"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-5 rounded-2xl font-black text-lg tracking-wider uppercase border border-neon-pink text-neon-pink hover:bg-neon-pink hover:text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,0,127,0.5)]"
+                  className="w-full block text-center py-5 rounded-2xl font-black text-lg tracking-wider uppercase border border-neon-pink text-neon-pink hover:bg-neon-pink hover:text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,0,127,0.5)]"
                 >
                   Join Waitlist
-                </motion.button>
+                </motion.a>
               </div>
             </div>
           </motion.div>
@@ -79,13 +80,14 @@ export default function PricingSection() {
               </div>
               <div className="mt-auto relative z-10">
                 <div className="text-6xl md:text-7xl font-noir font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">₹XXX</div>
-                <motion.button 
+                <motion.a 
+                  href="#pre-register"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-5 rounded-2xl font-black text-lg tracking-wider uppercase border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-900 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,240,255,0.5)]"
+                  className="w-full block text-center py-5 rounded-2xl font-black text-lg tracking-wider uppercase border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-900 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,240,255,0.5)]"
                 >
                   Join Waitlist
-                </motion.button>
+                </motion.a>
               </div>
             </div>
           </motion.div>

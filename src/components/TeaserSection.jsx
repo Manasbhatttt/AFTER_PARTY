@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function TeaserSection() {
+  const targetDate = new Date('2026-04-15T23:59:59').getTime();
+  
+  const [timeLeft, setTimeLeft] = useState({
+    days: '20',
+    hours: '00',
+    minutes: '00',
+    seconds: '00'
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setTimeLeft({
+        days: days.toString().padStart(2, '0'),
+        hours: hours.toString().padStart(2, '0'),
+        minutes: minutes.toString().padStart(2, '0'),
+        seconds: seconds.toString().padStart(2, '0')
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="py-40 relative z-10 overflow-hidden bg-dark-900 border-t border-white/5">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] border border-white/5 rounded-full pointer-events-none"></div>
@@ -30,21 +65,26 @@ export default function TeaserSection() {
             Date & time reveal incoming. Turn on notifications and join the waitlist to receive the encrypted coordinates first.
           </p>
           
-          <div className="flex justify-center gap-6">
-            <motion.div whileHover={{ y: -10 }} className="w-24 md:w-32 h-32 md:h-40 glass flex flex-col items-center justify-center rounded-[2rem] border border-white/10 relative overflow-hidden group">
+          <div className="flex justify-center flex-wrap gap-4 md:gap-6">
+            <motion.div whileHover={{ y: -10 }} className="w-20 md:w-32 h-28 md:h-40 glass flex flex-col items-center justify-center rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden group">
               <div className="absolute top-0 w-full h-1 bg-neon-pink group-hover:h-full transition-all duration-500 opacity-20 z-0"></div>
-              <span className="text-5xl md:text-6xl font-display font-black relative z-10">??</span>
-              <span className="text-xs font-bold tracking-widest uppercase mt-4 text-white/50 relative z-10 group-hover:text-white transition-colors">Days</span>
+              <span className="text-4xl md:text-6xl font-display font-black relative z-10">{timeLeft.days}</span>
+              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase mt-2 md:mt-4 text-white/50 relative z-10 group-hover:text-white transition-colors">Days</span>
             </motion.div>
-            <motion.div whileHover={{ y: -10 }} className="w-24 md:w-32 h-32 md:h-40 glass flex flex-col items-center justify-center rounded-[2rem] border border-white/10 relative overflow-hidden group">
+            <motion.div whileHover={{ y: -10 }} className="w-20 md:w-32 h-28 md:h-40 glass flex flex-col items-center justify-center rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden group">
               <div className="absolute top-0 w-full h-1 bg-neon-purple group-hover:h-full transition-all duration-500 opacity-20 z-0"></div>
-              <span className="text-5xl md:text-6xl font-display font-black relative z-10">??</span>
-              <span className="text-xs font-bold tracking-widest uppercase mt-4 text-white/50 relative z-10 group-hover:text-white transition-colors">Hours</span>
+              <span className="text-4xl md:text-6xl font-display font-black relative z-10">{timeLeft.hours}</span>
+              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase mt-2 md:mt-4 text-white/50 relative z-10 group-hover:text-white transition-colors">Hours</span>
             </motion.div>
-            <motion.div whileHover={{ y: -10 }} className="w-24 md:w-32 h-32 md:h-40 glass flex flex-col items-center justify-center rounded-[2rem] border border-white/10 relative overflow-hidden group">
+            <motion.div whileHover={{ y: -10 }} className="w-20 md:w-32 h-28 md:h-40 glass flex flex-col items-center justify-center rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden group">
               <div className="absolute top-0 w-full h-1 bg-neon-blue group-hover:h-full transition-all duration-500 opacity-20 z-0"></div>
-              <span className="text-5xl md:text-6xl font-display font-black relative z-10">??</span>
-              <span className="text-xs font-bold tracking-widest uppercase mt-4 text-white/50 relative z-10 group-hover:text-white transition-colors">Mins</span>
+              <span className="text-4xl md:text-6xl font-display font-black relative z-10">{timeLeft.minutes}</span>
+              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase mt-2 md:mt-4 text-white/50 relative z-10 group-hover:text-white transition-colors">Mins</span>
+            </motion.div>
+            <motion.div whileHover={{ y: -10 }} className="w-20 md:w-32 h-28 md:h-40 glass flex flex-col items-center justify-center rounded-2xl md:rounded-[2rem] border border-white/10 relative overflow-hidden group">
+              <div className="absolute top-0 w-full h-1 bg-white group-hover:h-full transition-all duration-500 opacity-20 z-0"></div>
+              <span className="text-4xl md:text-6xl font-display font-black relative z-10">{timeLeft.seconds}</span>
+              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase mt-2 md:mt-4 text-white/50 relative z-10 group-hover:text-white transition-colors">Secs</span>
             </motion.div>
           </div>
         </motion.div>
