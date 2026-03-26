@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function TeaserSection() {
-  const [targetDate] = useState(() => {
-    if (typeof window === 'undefined') return new Date().getTime() + 20 * 24 * 60 * 60 * 1000;
-    const saved = localStorage.getItem('teaserTargetDate');
-    if (saved) return parseInt(saved, 10);
-    const newTarget = new Date().getTime() + 20 * 24 * 60 * 60 * 1000;
-    localStorage.setItem('teaserTargetDate', newTarget.toString());
-    return newTarget;
-  });
+  const [targetDate] = useState(new Date('2026-04-20T10:00:00+05:30').getTime());
 
   const [timeLeft, setTimeLeft] = useState(() => {
     const distance = targetDate - new Date().getTime();
