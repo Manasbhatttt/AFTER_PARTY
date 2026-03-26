@@ -2,13 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function TeaserSection() {
-  const targetDate = new Date('2026-04-15T23:59:59').getTime();
-  
-  const [timeLeft, setTimeLeft] = useState({
-    days: '20',
-    hours: '00',
-    minutes: '00',
-    seconds: '00'
+  const [targetDate] = useState(() => {
+    if (typeof window === 'undefined') return new Date().getTime() + 20 * 24 * 60 * 60 * 1000;
+    const saved = localStorage.getItem('teaserTargetDate');
+    if (saved) return parseInt(saved, 10);
+    const newTarget = new Date().getTime() + 20 * 24 * 60 * 60 * 1000;
+    localStorage.setItem('teaserTargetDate', newTarget.toString());
+    return newTarget;
+  });
+
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const distance = targetDate - new Date().getTime();
+    if (distance <= 0) return { days: '00', hours: '00', minutes: '00', seconds: '00' };
+    return {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0'),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0'),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0'),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0')
+    };
   });
 
   useEffect(() => {
@@ -18,24 +29,20 @@ export default function TeaserSection() {
 
       if (distance < 0) {
         clearInterval(interval);
+        setTimeLeft({ days: '00', hours: '00', minutes: '00', seconds: '00' });
         return;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       setTimeLeft({
-        days: days.toString().padStart(2, '0'),
-        hours: hours.toString().padStart(2, '0'),
-        minutes: minutes.toString().padStart(2, '0'),
-        seconds: seconds.toString().padStart(2, '0')
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0'),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0'),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0'),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0')
       });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [targetDate]);
 
   return (
     <section className="py-40 relative z-10 overflow-hidden bg-dark-900 border-t border-white/5">
