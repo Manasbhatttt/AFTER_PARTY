@@ -77,7 +77,7 @@ export default function AboutParty() {
               <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }} className="mt-12 flex flex-wrap gap-6">
                 <motion.div whileHover={{ scale: 1.05 }} className="glass px-8 py-6 rounded-2xl border border-white/10 text-center relative overflow-hidden group w-full sm:w-auto flex-grow">
                   <div className="absolute inset-0 bg-neon-blue/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                  <span className="block text-4xl font-black text-neon-blue relative z-10 group-hover:text-white transition-colors">1000+</span>
+                  <span className="block text-4xl font-black text-neon-blue relative z-10 group-hover:text-white transition-colors">100+</span>
                   <span className="text-sm text-white/50 uppercase tracking-widest relative z-10 group-hover:text-white/80 transition-colors">Expected</span>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} className="glass px-8 py-6 rounded-2xl border border-white/10 text-center relative overflow-hidden group w-full sm:w-auto flex-grow">

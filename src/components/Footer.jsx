@@ -39,7 +39,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="mt-6 text-white/50 text-sm">
-              hello@mehfilnoir26.com
+              binrec21@gmail.com
             </p>
           </div>
         </div>

@@ -45,7 +45,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="inline-block mb-6 px-4 py-1 rounded-full border border-white/20 glass text-sm font-semibold tracking-widest uppercase"
         >
-          Dehradun's Biggest College After-Party
+          Dehradun's Coolest College After-Party
         </motion.div>
         
         <div className="relative inline-block mt-4 mb-12 text-center flex flex-col items-center">
